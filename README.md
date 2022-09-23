@@ -1,5 +1,5 @@
 # hatch-demo
-A repository for learning about Python Distribution Packaging with Hatch
+A repository for learning about Python Distribution Packaging with [Hatch](https://hatch.pypa.io/latest/)
 
 ## Create a conda env 
 ```bash
@@ -17,7 +17,25 @@ pip install hatch
 hatch new "Hatch Demo"
 ```
 
+## Write come custom code inside "hatch_demo" folder.
+```python
+calculation.py
+```
+
 ## Build 
+Add the configuration to build the source and built distibution packaes.
+```python
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+  "/docs",
+  "/tests"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hatch_demo"]
+```
+
 ```python
 hatch build
 ```
@@ -27,6 +45,7 @@ The first thing you’ll need to do is register an account on TestPyPI, which is
 Once created, you should have the username and passowrd handy to publish. 
 
 The link for uploading to testPypi repo is: https://test.pypi.org/legacy/
+
 There are many tools available to publish to pypi. We will explore using `hatch publish` for the same.
 
 1. Using hatch publish command and inline repository args
