@@ -23,7 +23,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = []  # Spefices the runtime dependencies needed for the project
 dynamic = ["version"]
 
 [project.urls]
@@ -45,6 +45,16 @@ no-cov = "cov --no-cov"
 
 [[tool.hatch.envs.test.matrix]]
 python = ["37", "38", "39", "310", "311"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+  "/docs",
+  "/tests"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hatch_demo"]
 
 [tool.coverage.run]
 branch = true
